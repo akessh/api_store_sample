@@ -13,14 +13,17 @@ class MainPage extends StatelessWidget {
       child:  Scaffold(
 
         body: SingleChildScrollView(
+          
           child: Padding(
             padding: const EdgeInsets.only(left: 10,right: 10),
             child: Obx(
-              ()=> Column(
+              ()=>controller.isLoading.value?const Align(
+                alignment: Alignment.center,
+                child: CircularProgressIndicator()): Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                  controller.image.value.isNotEmpty?
-                 Container(
+                 SizedBox(
                   height: 300,
                   width: double.infinity,
                   child: Image.network(controller.image.value)):Container(
@@ -29,21 +32,21 @@ class MainPage extends StatelessWidget {
                   color: 
                   Colors.blueAccent,
                  ),
-
+        
                  
-                  SizedBox(height: 10,),
+                const  SizedBox(height: 10,),
                       
                   // Title---------
                       
-                  Text('${controller.title.value}',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
+                  Text(controller.title.value,style:const TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
             
                   // Discription-----------
             
                   Text(controller.description.value.toString()),
             
-                  SizedBox(height: 10,),
+                const  SizedBox(height: 10,),
             
-                  Text('${controller.price.value.toStringAsFixed(2)}',style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400))
+                  Text(controller.price.value.toStringAsFixed(2),style:const TextStyle(fontSize: 25,fontWeight: FontWeight.w400))
                 ],
               ),
             ),

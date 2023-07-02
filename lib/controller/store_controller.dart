@@ -7,11 +7,13 @@ class StoreController extends GetxController {
   var description=RxString('');
   var price=RxDouble(0);
   var image=RxString('');
+  var isLoading=true.obs;
  
   
 
   getData() async {
     try {
+      isLoading.value=true;
       var storeData = await StoreServices().getServices();
 
       if (storeData != null) {
@@ -20,12 +22,15 @@ class StoreController extends GetxController {
         description.value=storeData.description??'';
         price.value=double.parse(storeData.price??'0');
         image.value=storeData.image??'';
+        isLoading.value=false;
         
       }
     } catch (e) {
       Get.snackbar('Error', '$e');
-      print(e);
+     isLoading.value=false;
+     print(e);
     }
+    
   }
 
   @override
@@ -33,4 +38,5 @@ class StoreController extends GetxController {
     getData();
     super.onInit();
   }
+  
 }
