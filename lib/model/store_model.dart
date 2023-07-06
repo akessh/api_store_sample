@@ -7,13 +7,15 @@ class StoreModel{
   String? description;
   String?  price;
   String? image;
+  String? category;
 
   StoreModel({
     this.id,
     this.title,
     this.description,
     this.price,
-    this.image
+    this.image,
+    this.category,
   });
 
   factory StoreModel.fromjson(Map<String,dynamic>json){
@@ -22,7 +24,9 @@ class StoreModel{
     title: json['title'],
     description: json['description'],
     price: json['price'].toString(),
-    image: json['image']
+    image: json['image'],
+    category: json['category'],
+
     );
   }
   Map<String,dynamic> tojson(){
@@ -31,7 +35,8 @@ class StoreModel{
       'title':title,
       'description':description,
       'price':price,
-      'image':image
+      'image':image,
+      'category':category,
     };
   }
 }
